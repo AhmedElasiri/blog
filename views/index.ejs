@@ -1,0 +1,38 @@
+<!-- iclude header -->
+<%- include('include/_header') %>
+    <!-- /iclude header -->
+
+    <div class="container">
+        <div>
+            <h1 class="mt-5">My Blog</h1>
+            <a href="/add-article" class="btn btn-success my-3">New Article</a>
+        </div>
+        <div class="articles">
+            <% for(article of articles){ %>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <%= article.title %>
+                        </h3>
+                        <h6 class="card-subtitle">
+                            <%= article.createdOn %>
+                        </h6>
+                        <p class="card-text">
+                            <%= article.description %>
+                        </p>
+                        <div>
+                            <a href="/show-article?id=<%= article._id %>" class="btn btn-success mt-3">Read More</a>
+                            <a href="/update-article?id=<%= article._id %>" class="btn btn-info mt-3 mx-1">Edit</a>
+                            <form action="/api/articles/<%= article._id %>?_method=DELETE" method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger mt-3">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+
+
+        <!-- iclude footer -->
+        <%- include('include/_footer') %>
+            <!-- /iclude footer -->
